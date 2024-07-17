@@ -30,8 +30,13 @@ header img {
   width: 70px;
 }
 
+#instructions {
+  text-align: center;
+}
+
 #balanceamento input {
-  width: 20px;
+  width: 16px;
+  font-size: 0.9rem;
 }
 
 #stoichiometry input {
@@ -52,6 +57,7 @@ main {
   padding: 2px;
   width: 45%;
   border: 3px solid black;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,6 +81,7 @@ p {
   margin: 10px;
   padding: 5px;
   background-color: rgb(43, 226, 162);
+  border-radius: 10px;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -87,6 +94,17 @@ p {
 
 label {
   margin: 2px;
+}
+#balanceamento button,
+#stoichiometry button {
+  background-color: blue;
+  color: white;
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+#balanceamento div {
+  margin: 10px;
 }
 
 @media (max-width: 900px) {

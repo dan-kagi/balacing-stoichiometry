@@ -179,30 +179,30 @@ function createCard(question) {
   }
   balDiv.appendChild(balForm);
   const checkBalButton = document.createElement('button');
-  checkBalButton.textContent = 'Checar';
+  checkBalButton.textContent = 'Checar Balanceamento';
   checkBalButton.addEventListener('click', (event) => {
     const card_id = document.getElementById(question.id); //ficar de olho nisto aqui
     const inputs = card_id.querySelectorAll('#balanceamento input');
     if (!inputs[0].value) {
       event.preventDefault();
       questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
-      alert('Coeficiente estequiométrico não inserido!');
+      alert(`Q${question.id} - Coeficiente estequiométrico não inserido!`);
       return;
     }
     let ratio = Number(inputs[0].value) / question.coefs[0];
-    let message = 'Parabéns, coeficientes ' + inputs[0].value;
+    let message = `Q${question.id} - Parabéns, coeficientes ` + inputs[0].value;
     for (let i = 1; i < inputs.length; i++) {
       if (!inputs[i].value) {
         questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
         event.preventDefault();
-        alert('Coeficiente estequiométrico não inserido!');
+        alert(`Q${question.id} - Coeficiente estequiométrico não inserido!`);
         return;
       }
       message += ' ' + inputs[i].value;
       newRatio = Number(inputs[i].value) / question.coefs[i];
       if (newRatio !== ratio) {
         questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
-        alert('Você não balanceou corretamente!');
+        alert(`Q${question.id} - Você não balanceou corretamente!`);
         event.preventDefault();
         return;
       }
@@ -212,8 +212,9 @@ function createCard(question) {
     alert(message);
     event.preventDefault();
   });
-
-  balForm.appendChild(checkBalButton);
+  const divBalButton = document.createElement('div');
+  divBalButton.appendChild(checkBalButton);
+  balForm.appendChild(divBalButton);
   card.appendChild(balDiv);
 
   //div stoichiometry
@@ -247,15 +248,17 @@ function createCard(question) {
       const inputs = card_id.querySelectorAll('#stoichiometry input');
       for (let j = 0; j < inputs.length; j++) {
         if (convertToEnglish(inputs[j].value) !== question.asking[j].answer) {
-          alert('Resposta(s) errada(s)! Refaça o exercício!');
+          alert(`Q${question.id} - Resposta(s) errada(s)! Refaça o exercício!`);
           event.preventDefault();
           return;
         }
       }
-      alert('Parabéns, resposta(s) correta(s)!!!');
+      alert(`Q${question.id} - Parabéns, resposta(s) correta(s)!!!`);
       event.preventDefault();
     } else {
-      alert('Realize primeiramente o balanceamento da equação química!');
+      alert(
+        `Q${question.id} - Realize primeiramente o balanceamento da equação química!`
+      );
       event.preventDefault();
     }
   });
