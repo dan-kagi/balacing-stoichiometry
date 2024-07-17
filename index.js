@@ -232,7 +232,7 @@ function createCard(question) {
     label.innerHTML = changeToSubscript(question.asking[i].substance) + ':';
     const input = document.createElement('input');
     input.setAttribute('name', question.asking[i].name);
-    input.setAttribute('placeholder', 'quant. em mol');
+    input.setAttribute('placeholder', 'mol');
     answer.appendChild(label);
     answer.appendChild(input);
     stoichForm.appendChild(answer);
