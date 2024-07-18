@@ -182,35 +182,27 @@ function createCard(question) {
   checkBalButton.textContent = 'Checar Balanceamento';
   checkBalButton.classList.add('buttonStyle');
   checkBalButton.addEventListener('click', (event) => {
-    const card_id = document.getElementById(question.id); //ficar de olho nisto aqui
+    const card_id = document.getElementById(question.id);
     const inputs = card_id.querySelectorAll('.balanceamento input');
-    if (!inputs[0].value) {
-      event.preventDefault();
-      questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
-      alert(`Q${question.id} - Coeficiente estequiométrico não inserido!`);
-      return;
+    let insertedCoefs = [];
+    for (let input of inputs) {
+      insertedCoefs.push(input.value);
     }
-    let ratio = Number(inputs[0].value) / question.coefs[0];
-    let message = `Q${question.id} - Parabéns, coeficientes ` + inputs[0].value;
-    for (let i = 1; i < inputs.length; i++) {
-      if (!inputs[i].value) {
-        questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
-        event.preventDefault();
-        alert(`Q${question.id} - Coeficiente estequiométrico não inserido!`);
-        return;
+    const correctCoefs = question.coefs;
+    if (validateCoefs(insertedCoefs)) {
+      const checking = checkCoefs(insertedCoefs, correctCoefs);
+      if (checking) {
+        questions[question.id - 1].isBalanced = true;
+        alert(`Q${question.id} - ` + checking);
+      } else {
+        alert(`Q${question.id} - Errado, realize o balanceamento novamente!`);
       }
-      message += ' ' + inputs[i].value;
-      newRatio = Number(inputs[i].value) / question.coefs[i];
-      if (newRatio !== ratio) {
-        questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
-        alert(`Q${question.id} - Você não balanceou corretamente!`);
-        event.preventDefault();
-        return;
-      }
+    } else {
+      alert(
+        `Q${question.id} - Coeficientes Inválidos! Insira números inteiros maiores do que zero.`
+      );
+      questions[question.id - 1].isBalanced = false;
     }
-    message += ' estão corretos. Agora resolva o problema estequiométrico.';
-    questions[question.id - 1].isBalanced = true; //ficar de olho nisto aqui
-    alert(message);
     event.preventDefault();
   });
 
@@ -334,4 +326,35 @@ function convertToEnglish(floatNumber) {
     return false;
   }
   return number;
+}
+
+function validateCoefs(coeficients) {
+  let isValid = true;
+  for (let coef of coeficients) {
+    if (
+      isNaN(coef) ||
+      !coef ||
+      Number(coef) <= 0 ||
+      !Number.isInteger(Number(coef))
+    ) {
+      isValid = false;
+      return isValid;
+    }
+  }
+  return isValid;
+}
+
+function checkCoefs(insertedCoefs, correctCoefs) {
+  const size = correctCoefs.length;
+  let msg = 'Parabéns, coeficientes ' + insertedCoefs[0];
+  let ratio = Number(insertedCoefs[0]) / correctCoefs[0];
+  for (let i = 1; i < size; i++) {
+    msg += ' ' + insertedCoefs[i];
+    let newRatio = Number(insertedCoefs[i]) / correctCoefs[i];
+    if (newRatio !== ratio) {
+      return false;
+    }
+  }
+  msg += ' estão corretos. Agora resolva o problema estequiométrico.';
+  return msg;
 }
