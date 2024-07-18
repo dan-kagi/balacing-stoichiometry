@@ -180,9 +180,10 @@ function createCard(question) {
   balDiv.appendChild(balForm);
   const checkBalButton = document.createElement('button');
   checkBalButton.textContent = 'Checar Balanceamento';
+  checkBalButton.classList.add('buttonStyle');
   checkBalButton.addEventListener('click', (event) => {
     const card_id = document.getElementById(question.id); //ficar de olho nisto aqui
-    const inputs = card_id.querySelectorAll('#balanceamento input');
+    const inputs = card_id.querySelectorAll('.balanceamento input');
     if (!inputs[0].value) {
       event.preventDefault();
       questions[question.id - 1].isBalanced = false; //ficar de olho nisto aqui
@@ -212,6 +213,21 @@ function createCard(question) {
     alert(message);
     event.preventDefault();
   });
+
+  checkBalButton.addEventListener('mouseover', () => {
+    const card = document.getElementById(`${question.id}`);
+    const but = card.querySelector('.balanceamento button');
+    but.classList.remove('buttonStyle');
+    but.classList.add('buttonStyle2');
+  });
+
+  checkBalButton.addEventListener('mouseleave', () => {
+    const card = document.getElementById(`${question.id}`);
+    const but = card.querySelector('.balanceamento button');
+    but.classList.remove('buttonStyle2');
+    but.classList.add('buttonStyle');
+  });
+
   const divBalButton = document.createElement('div');
   divBalButton.appendChild(checkBalButton);
   balForm.appendChild(divBalButton);
@@ -241,11 +257,12 @@ function createCard(question) {
   const buttonDiv = document.createElement('div');
   const checkStoichButton = document.createElement('button');
   checkStoichButton.textContent = 'Checar Resposta';
+  checkStoichButton.classList.add('buttonStyle');
   checkStoichButton.addEventListener('click', (event) => {
     if (questions[question.id - 1].isBalanced) {
       //ficar de olho aqui
       const card_id = document.getElementById(question.id); //ficar de olho nisto aqui
-      const inputs = card_id.querySelectorAll('#stoichiometry input');
+      const inputs = card_id.querySelectorAll('.stoichiometry input');
       for (let j = 0; j < inputs.length; j++) {
         if (convertToEnglish(inputs[j].value) !== question.asking[j].answer) {
           alert(`Q${question.id} - Resposta(s) errada(s)! Refaça o exercício!`);
@@ -262,6 +279,21 @@ function createCard(question) {
       event.preventDefault();
     }
   });
+
+  checkStoichButton.addEventListener('mouseover', () => {
+    const card = document.getElementById(`${question.id}`);
+    const but = card.querySelector('.stoichiometry button');
+    but.classList.remove('buttonStyle');
+    but.classList.add('buttonStyle2');
+  });
+
+  checkStoichButton.addEventListener('mouseleave', () => {
+    const card = document.getElementById(`${question.id}`);
+    const but = card.querySelector('.stoichiometry button');
+    but.classList.remove('buttonStyle2');
+    but.classList.add('buttonStyle');
+  });
+
   buttonDiv.appendChild(checkStoichButton);
   stoichForm.appendChild(buttonDiv);
   stoichDiv.appendChild(stoichForm);

@@ -30,16 +30,16 @@ header img {
   width: 70px;
 }
 
-#instructions {
+#instruction {
   text-align: center;
 }
 
-#balanceamento input {
+.balanceamento input {
   width: 16px;
   font-size: 0.9rem;
 }
 
-#stoichiometry input {
+.stoichiometry input {
   width: 60px;
 }
 
@@ -95,15 +95,22 @@ p {
 label {
   margin: 2px;
 }
-#balanceamento button,
-#stoichiometry button {
+
+.buttonStyle {
   background-color: blue;
   color: white;
   border: 1px solid blue;
   border-radius: 5px;
 }
 
-#balanceamento div {
+.buttonStyle2 {
+  background-color: #ff4191;
+  color: white;
+  border: 1px solid #ff4191;
+  border-radius: 5px;
+}
+
+.balanceamento div {
   margin: 10px;
 }
 
