@@ -103,11 +103,14 @@ label {
   border-radius: 5px;
 }
 
-.buttonStyle2 {
+.buttonStyle:hover {
   background-color: #ff4191;
-  color: white;
   border: 1px solid #ff4191;
-  border-radius: 5px;
+}
+
+.buttonStyle:active {
+  background-color: #444444;
+  border: 1px solid #444444;
 }
 
 .balanceamento div {

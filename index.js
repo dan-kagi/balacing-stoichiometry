@@ -206,19 +206,19 @@ function createCard(question) {
     event.preventDefault();
   });
 
-  checkBalButton.addEventListener('mouseover', () => {
-    const card = document.getElementById(`${question.id}`);
-    const but = card.querySelector('.balanceamento button');
-    but.classList.remove('buttonStyle');
-    but.classList.add('buttonStyle2');
-  });
+  // checkBalButton.addEventListener('mouseover', () => {
+  //   const card = document.getElementById(`${question.id}`);
+  //   const but = card.querySelector('.balanceamento button');
+  //   but.classList.remove('buttonStyle');
+  //   but.classList.add('buttonStyle2');
+  // });
 
-  checkBalButton.addEventListener('mouseleave', () => {
-    const card = document.getElementById(`${question.id}`);
-    const but = card.querySelector('.balanceamento button');
-    but.classList.remove('buttonStyle2');
-    but.classList.add('buttonStyle');
-  });
+  // checkBalButton.addEventListener('mouseleave', () => {
+  //   const card = document.getElementById(`${question.id}`);
+  //   const but = card.querySelector('.balanceamento button');
+  //   but.classList.remove('buttonStyle2');
+  //   but.classList.add('buttonStyle');
+  // });
 
   const divBalButton = document.createElement('div');
   divBalButton.appendChild(checkBalButton);
@@ -272,19 +272,19 @@ function createCard(question) {
     }
   });
 
-  checkStoichButton.addEventListener('mouseover', () => {
-    const card = document.getElementById(`${question.id}`);
-    const but = card.querySelector('.stoichiometry button');
-    but.classList.remove('buttonStyle');
-    but.classList.add('buttonStyle2');
-  });
+  // checkStoichButton.addEventListener('mouseover', () => {
+  //   const card = document.getElementById(`${question.id}`);
+  //   const but = card.querySelector('.stoichiometry button');
+  //   but.classList.remove('buttonStyle');
+  //   but.classList.add('buttonStyle2');
+  // });
 
-  checkStoichButton.addEventListener('mouseleave', () => {
-    const card = document.getElementById(`${question.id}`);
-    const but = card.querySelector('.stoichiometry button');
-    but.classList.remove('buttonStyle2');
-    but.classList.add('buttonStyle');
-  });
+  // checkStoichButton.addEventListener('mouseleave', () => {
+  //   const card = document.getElementById(`${question.id}`);
+  //   const but = card.querySelector('.stoichiometry button');
+  //   but.classList.remove('buttonStyle2');
+  //   but.classList.add('buttonStyle');
+  // });
 
   buttonDiv.appendChild(checkStoichButton);
   stoichForm.appendChild(buttonDiv);
